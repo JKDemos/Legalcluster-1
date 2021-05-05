@@ -1,85 +1,134 @@
-import React, {FC} from 'react';
-import styled from 'styled-components';
-import { Wrapper } from'../../styledHelpers/Components'
+import React from 'react';
+import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import HomeIcon from '@material-ui/icons/Home';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+//DROPDOWN HOOK
 import useDropdown from 'react-dropdown-hook'
+import {ExpandMenu} from './ExpandMenu'
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    topBar:{
+      backgroundColor:'lightgray',
+      boxShadow:'none',
+    },
+    grow: {
+      flexGrow: 1,
+      backgroundColor:'lightgray',
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
+      },
+    },
+    search: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      marginRight: theme.spacing(2),
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+      },
+    },
+    searchIcon: {
+      padding: theme.spacing(0, 2),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputRoot: {
+      color: 'inherit',
+    },
+    inputInput: {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: '20ch',
+      },
+    },
+    sectionDesktop: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex',
+      },
+    },
+    sectionMobile: {
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
+  }),
+);
 
-import { Colors } from '../../styledHelpers/Colors'
-import {Icons} from '../../styledHelpers/Icons';
-import {ExpandMenu} from './ExpandMenu';
+export default function PrimarySearchAppBar() {
 
-const InnerWrapper = styled.div`
-//width:1200px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-width:100%;
-background: ${Colors.white};
-`;
-const RightIcons = styled.div`
-img{
-    
-    padding:8px;
-    margin-right:10px;
-    
-}
-#border{
-    background:#EDEDED;
-    border-radius: 25px 25px 25px 25px;
-    padding:8px;
-}
-`;
-const InputWrapper = styled.div`
-input{
-    
-    width:400px;
-}
-`;
-const ExpandedMenuWrapper = styled.div`
-background:white;
-img{
-    margin-left:5px;
-}
-`;
-const Menu = styled.div`
-display:flex;
-`;
-export const TopNav: FC = () => {
-    const [wrapperRef, dropdownOpen, toggleDropdown]=useDropdown();
-    return (
-
-    
-        
-        <Wrapper>
-            <InnerWrapper>
-                <ExpandedMenuWrapper>
-                <img src={Icons.bellIcon} alt="bell icon"/>
-                <Menu ref={wrapperRef}>
-                <img src={Icons.house2Icon} alt="house icon"/>
-                <p>Home</p>
-                <img onClick={toggleDropdown} src={Icons.arrowDownIcon} alt="arrow down icon"/>
-                {dropdownOpen && 
-                    
-                   <ExpandMenu/>
-                    
-                    
-                }
-                </Menu>
-
-                </ExpandedMenuWrapper>
-                <InputWrapper>
-                <input type="text" placeholder='Search Legalcluster'/>
-                <img src="" alt=""/>
-                </InputWrapper>
-            
-                <RightIcons>
-                <img src={Icons.houseIcon} alt="house icon"/>
-                <img id="border" src={Icons.commentsIcon} alt="comments icon"/>
-                <img id="border"src={Icons.bellIcon} alt="bell icon"/>
-                </RightIcons>
-            </InnerWrapper>        
-        </Wrapper>
-
-
-    );
+  const [wrapperRef, dropdownOpen, toggleDropdown]=useDropdown();
+  const classes=useStyles();
+  return (
+    <div className={classes.grow}>
+      <AppBar className={classes.topBar} position="static">
+        <Toolbar>
+          <IconButton color="inherit" >
+            <HomeIcon />
+            <p>Home</p>
+            <ArrowDropDownIcon onClick={toggleDropdown}/>
+            {
+              dropdownOpen&&
+              <ExpandMenu/>
+            }
+          </IconButton>
+          <div className={classes.search}>
+            <InputBase/>
+          </div>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+          <IconButton color="inherit">
+                <HomeIcon />
+            </IconButton>
+            <IconButton aria-label="show 4 new mails" color="inherit">
+                <MailIcon />
+            </IconButton>
+            <IconButton aria-label="show 17 new notifications" color="inherit">
+                <NotificationsIcon />
+            </IconButton>
+          </div>
+          <div className={classes.sectionMobile}>
+            <IconButton>
+              <HomeIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
