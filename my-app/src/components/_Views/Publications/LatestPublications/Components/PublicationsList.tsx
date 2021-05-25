@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding:'0px',
-      margin:'0px',
-      width: '500px',
+      marginBottom:'20px',
+      width: '900px',
       backgroundColor: theme.palette.background.paper,
     },
     publicationsListItem:{

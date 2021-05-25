@@ -11,6 +11,7 @@ import {IPostsReducer} from '../../../../../reducers/postReducer'
 const Styles= makeStyles((theme: Theme) =>
 createStyles({
   newsContainer:{
+    width:'100%',
     display:'flex',
     paddingTop:'0px',
     paddingBottom:'0px',

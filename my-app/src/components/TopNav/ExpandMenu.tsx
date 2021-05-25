@@ -129,7 +129,7 @@ export const ExpandMenu: FC = () => {
         }
 
         <li id="group">Account</li>
-        <Link to="/">
+        <Link to='/profile'>
             <li> <Avatar alt='aaa' src={'https://source.unsplash.com/jBTMrR6Q334'} />
             <div>
             <p >{usersList?.[0]?.name}</p><p>See profile</p>

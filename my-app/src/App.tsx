@@ -12,7 +12,8 @@ import {useDispatch} from 'react-redux'
 //ROUTE COMPONENTS
 import {LatestPublications} from './components/_Views/Publications/LatestPublications/LatestPublications';
 import {Entities} from './components/_Views/Entities/Entities';
-import {Ecosystem} from './components/_Views/Ecosystem/Ecosystem'
+import {Ecosystem} from './components/_Views/Ecosystem/Ecosystem';
+import {Profile} from './components/Profile/Profile'
 
 type GetUsers=ReturnType<typeof getUsers>
 type GetPhotos=ReturnType<typeof getPhotos>
@@ -55,6 +56,7 @@ const MainPage: FC =() => {
                     <Route path='/' exact component={LatestPublications}/>
                     <Route path='/entities' exact component={Entities}/>
                     <Route path='/ecosystem' exact component={Ecosystem}/>
+                    <Route path='/profile' exact component={Profile}/>
                 </Switch>
         </div>
         </div>

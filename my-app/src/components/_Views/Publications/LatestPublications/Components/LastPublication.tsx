@@ -15,8 +15,8 @@ const Styles = makeStyles({
     backgroundSize: 'cover',
     padding:'0px',
     margin:'0px',
-    width:'250px',
-    height:'250px',
+    width:'300px',
+    height:'300px',
     color:'white',
   },
 
