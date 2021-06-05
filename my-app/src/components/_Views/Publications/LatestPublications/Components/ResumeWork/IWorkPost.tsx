@@ -3,4 +3,5 @@ export interface IWorkPost{
     id:number
     title:string
     body:string
+    author:string
 }

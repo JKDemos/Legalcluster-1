@@ -3,7 +3,7 @@ import { ItemWrapper } from '../../_Components/Common/ItemWrapper';
 import { DataSection } from '../../_Components/Common/DataSection';
 
 //components
-import { ProfileDescrption } from '../../_Components/Profile/ProfileDescription';
+import { ProfileDescrption } from '../../_Components/Profile/Profile';
 import { FeeForm } from './Forms/FeeForm';
 
 export const AmountOfFees:FC=()=> {

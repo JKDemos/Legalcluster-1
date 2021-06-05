@@ -1,115 +1,146 @@
 import React,{FC, useState} from 'react';
-import { ItemWrapper } from '../../_Components/Common/ItemWrapper';
-import { DataSection } from '../../_Components/Common/DataSection';
-import { Formik, Form, Field } from 'formik';
 import { useSelector } from 'react-redux';
 import { IState } from '../../../reducers';
+import { IUsersReducer } from '../../../reducers/usersReducers';
+import { IPhotosReducer } from '../../../reducers/photosReducers';
+import { Avatar } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-export const ProfileInfomation:FC=()=> {
+
+//ICONS
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import DescriptionIcon from '@material-ui/icons/Description';
+import CloseIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/Save';
+import EditIcon from '@material-ui/icons/Edit';
+
+//STYLED COMPONENTS
+import { ItemWrapper } from '../../_Components/Common/ItemWrapper';
+import { DataSection } from '../../_Components/Common/DataSection';
+import {FlexRow} from '../../_Components/Common/DataLayouts';
+import { RightBound } from '../../_Components/Common/RightBound';
+import {ProfileDescrption,ProfilePersonalDetails,ProfileBox,PersonalDataForm} from '../../_Components/Profile/Profile'
+import { ShadowForm} from '../../_Components/Forms';
+import { BoldInput } from '../../_Components/Inputs';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    large: {
+      width: '60px',
+      height: '60px',
+      marginLeft:'15px',
+      marginTop:'20px',
+    },
+  }),
+);
+
+interface ISection1 {
+  title:string
+  }
   
-  const [Expertise, setExpertise] = useState({value:'Merges and aquisition'});
-  let [getSpeciality1, setSpeciality1] = useState('Cross border operations');
-  let [getSpeciality2, setSpeciality2] = useState('Transactions over 500M$');
-  let [getAdmission1, setAdmission1] = useState('Paris bar association');
-  let [getAdmission2, setAdmission2] = useState('Tunisian bar association');
-  let [getCountry, setCountry] = useState('Poland');
+  export const ProfileInfomation: FC<ISection1> = props =>{
+      //{props.title} renderowanie tytułu
+      // const { photosList } = useSelector<IState, IPhotosReducer>(globalState => globalState.photos);
+      const { usersList } = useSelector<IState, IUsersReducer>(globalState => globalState.users);
+      const { photosList } = useSelector<IState, IPhotosReducer>(globalState => globalState.photos);
   
-  return (
-    <React.Fragment>
-      <ItemWrapper>
-    <DataSection>
-        {/*-----------------------EXPERTISE FORM------------------------ */}
-          <p>Expertise</p>
-          <Formik
-            initialValues={{ expertise:Expertise['value']}}
-            onSubmit={(values, { setSubmitting }) => {
-            //var formDataObj=JSON.parse(JSON.stringify(values, null, 2))
-            //setExpertise((formDataObj)['expertise']);
-            setExpertise(prevState=>{
-              return{
-                ...prevState,
-                value:'aaa'
-              }
-            });
+  
+      let [isChange, showChange] = useState(false);
+     
+     let [name, setName] = useState(usersList?.[0]?.name);
+     let [company,setCompany] = useState(usersList?.[0]?.company.name);
+    //  let [city,setCity] = useState(usersList?.[0]?.address.city);
+     let [partner,setPartner] = useState('Partner');
+     let [email,setEmail] = useState(usersList?.[0]?.email);
+     let [phone,setPhone] = useState(usersList?.[0]?.phone);
+     
+     const classes = useStyles();
+     var city='New York'
+     return(
+      <DataSection>
+          <DataSection>
+            <FlexRow>
+              <MailOutlineIcon/>
+              <p>Message</p>
+              <DescriptionIcon/>
+              <p>Create a request</p>
+              <AddBoxIcon/>
+              <p>Add to a claster</p>
+              <CloseIcon className='X'/>
+              </FlexRow>
+          </DataSection>
+          <FlexRow>
+            <RightBound>
+                <EditIcon onClick={()=>showChange(isChange === false ? isChange = true:isChange=false)} />
+            </RightBound>
+           </FlexRow>
+          <ProfilePersonalDetails>
+            <ProfileBox>
+                <Avatar alt='profilePicture' src={photosList[0]?.url} className={classes.large}/>
+                  <p>See profile</p>                 
+            </ProfileBox>
+              
+              <PersonalDataForm>
+              <ShadowForm action="">
+                  {isChange === false?(
+                    <div>
+                        <FlexRow>
+                        <p><b> {name} </b></p>
+                        </FlexRow>
+                        <FlexRow>
+                        <p> {company}</p>
+                        </FlexRow>
+                        <FlexRow>
+                        <p>New York</p>
+                        <p> {partner} </p>
+                        </FlexRow>
+                    </div>
+                  ):(
+                      
+                      <div>
+                          <FlexRow>
+                            <BoldInput type="text" placeholder="Name" value={name} onChange={event =>setName(event.target.value)} />
+                        </FlexRow>
+                        <FlexRow>
+                            <input type="text" placeholder="Company" value={company} onChange={event =>setCompany(event.target.value)}/>
+                        </FlexRow>
+                        <FlexRow>
+                            <input type="text" placeholder="City" value={city}  onChange={event =>{city=event.target.value}}/>
+                            <input type="text" placeholder="Partner" value={partner} onChange={event =>setPartner(event.target.value)}/>
+                        </FlexRow>
+                    </div>
 
-            setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-            }, 400);
-       }}>
-
-       {({ isSubmitting }) => (
-         <Form>
-            <Field type="text" name="expertise"/>
-        </Form>
-        )}
-        </Formik>
-        
-        {/*-----------------------SPECIALITY FORM------------------------ */}
-          <p>Specialities</p>
-          <Formik
-            initialValues={{ speciality1: getSpeciality1, speciality2: getSpeciality2}}
-            onSubmit={(values, { setSubmitting }) => {
-            var formDataObj=JSON.parse(JSON.stringify(values, null, 2))
-            setSpeciality1((formDataObj)['speciality1']);
-            setSpeciality2((formDataObj)['speciality2']);
-            setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}>
-          {({ isSubmitting }) => (
-          <Form>
-            <Field type="text" name="speciality1" />
-            <Field type="text" name="speciality2" />
-          </Form>
-        )}
-        </Formik>
-
-       {/*-----------------------ADMISSION FORM------------------------ */}
-        <p>Admission to practice law</p>
-          <Formik
-            initialValues={{ Admission1:getAdmission1, Admission2:getAdmission2 }}
-            onSubmit={(values, { setSubmitting }) => {
-            var formDataObj=JSON.parse(JSON.stringify(values, null, 2))
-            setAdmission1((formDataObj)['Admission1']);
-            setAdmission2((formDataObj)['Admission2']);
-            setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-            }, 400);
-       }}
-     >
-       {({ isSubmitting }) => (
-         <Form>
-            <Field type="text" name="Admission1" />
-            <Field type="text" name="Admission2" />
-        </Form>
-        )}
-        </Formik>
-
-       {/*-----------------------COUNTRIES FORM------------------------ */}
-          <p>Countries</p>
-          <Formik
-        initialValues={{ country:getCountry }}
-        onSubmit={(values, { setSubmitting }) => {
-          var formDataObj=JSON.parse(JSON.stringify(values, null, 2))
-          setCountry((formDataObj)['country']);
-          setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-       {({ isSubmitting }) => (
-         <Form>
-           <Field type="text" name="country" />
-         </Form>
-       )}
-     </Formik>
-
-    </DataSection>
-      </ItemWrapper>
-    </React.Fragment>
-  );
-}
+                  )}
+                  </ShadowForm>
+              </PersonalDataForm>
+              
+              <PersonalDataForm>
+                <ShadowForm action="">
+                  <RightBound>
+                  {isChange === false?(
+                      <div>
+                        <FlexRow>
+                          <p>{email}</p>
+                        </FlexRow>
+                        <FlexRow>
+                          <p>{phone}</p>
+                        </FlexRow>
+                      </div>):(
+                          <div>
+                            <FlexRow>
+                                <input type="text" placeholder="e-mail" value={email} onChange={event =>setEmail(event.target.value)}/>
+                            </FlexRow>
+                            <FlexRow>
+                                <input type="text" placeholder="Phone number" value={phone} onChange={event =>setPhone(event.target.value)}/>
+                            </FlexRow>
+                            </div>
+                      )}
+                  </RightBound>
+                  </ShadowForm>
+              </PersonalDataForm>
+          </ProfilePersonalDetails>
+  
+      </DataSection>
+     );
+    };

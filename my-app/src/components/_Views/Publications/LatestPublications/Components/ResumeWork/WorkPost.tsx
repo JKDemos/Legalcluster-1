@@ -31,7 +31,7 @@ createStyles({
   },
 })
 );
-const WorkPost: React.FC<IWorkPost>=({userId, id, title, body}: IWorkPost)=> {
+const WorkPost: React.FC<IWorkPost>=({userId, id, title, body, author}: IWorkPost)=> {
   var client:string;
   if(id%2===0){
     client='Supplier contract'
@@ -56,7 +56,7 @@ const WorkPost: React.FC<IWorkPost>=({userId, id, title, body}: IWorkPost)=> {
           <div className={classes.credits}>
             <p>Subsid.corp.</p>
             <p>{client}</p>
-            <p>last updated 3 days ago by John Doe</p>
+            <p>last updated 3 days ago by {author}</p>
           </div>
         </div>
       </div>

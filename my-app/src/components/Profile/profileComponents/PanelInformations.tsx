@@ -1,71 +1,39 @@
 import React,{FC} from 'react';
 import { ItemWrapper } from '../../_Components/Common/ItemWrapper';
 import { DataSection } from '../../_Components/Common/DataSection';
-import { FlexRow } from '../../_Components/Common/FlexRow';
+import { FlexRow } from '../../_Components/Common/DataLayouts';
 import Avatar from '@material-ui/core/Avatar';
 import { Formik, Form, Field } from 'formik';
+import { useFormik } from 'formik';
 
 export const PanelInfomations:FC=()=> {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
   return (
     <React.Fragment>
       <ItemWrapper>
         <DataSection>
           <h4>Panel informations</h4>
           <p>Hourly fee</p>
-          <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-       {({ isSubmitting }) => (
-         <Form>
-           <Field type="text" name="email" />
-           <Field type="text" name="email" />
-         </Form>
-       )}
-     </Formik>
-          <p>Services & projects</p>
-          <Formik
-            initialValues={{ email: '', password: '' }}
-            onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-            }, 400);
-       }}
-     >
-       {({ isSubmitting }) => (
-         <Form>
-            <Field type="text" name="email" />
-        </Form>
-        )}
-        </Formik>
-        <p>Internal correspondents</p>
-        <FlexRow>
-          <Avatar alt='aaa' src={'https://source.unsplash.com/jBTMrR6Q334'} />
-          <Formik
-            initialValues={{ email: '', password: '' }}
-            onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-            }, 400);
-            }}
-            >
-       {({ isSubmitting }) => (
-         <Form>
-            <Field type="text" name="email" />
-            <Field type="text" name="email" />
-        </Form>
-        )}
-        </Formik>
-        </FlexRow>
-    </DataSection>
-
+        </DataSection>
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor="email">Email Address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+    
+          <button type="submit">Submit</button>
+        </form>
       </ItemWrapper>
     </React.Fragment>
   );

@@ -5,7 +5,7 @@ import { DataSection } from '../../_Components/Common/DataSection';
 import { Formik, Form, Field} from 'formik';
 
 //components
-import { ProfileDescrption } from '../../_Components/Profile/ProfileDescription';
+import { ProfileDescrption } from '../../_Components/Profile/Profile';
 import { ProposalsForm } from './Forms/ProposalForm';
 
 export const Proposals:FC=()=> {

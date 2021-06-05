@@ -31,6 +31,9 @@ const Styles = makeStyles({
     page:{
         marginLeft:'30px',
         display:'flex',
+    },
+    website:{
+        fontFamily: 'Roboto',
     }
   });
 
@@ -46,7 +49,7 @@ const MainPage: FC =() => {
 
     const classes=Styles();
     return (
-        <>
+        <div className={classes.website}>
         <Router>
         <PrimaryAppSearchBar/>
         <div className={classes.page}>
@@ -61,7 +64,7 @@ const MainPage: FC =() => {
         </div>
         </div>
         </Router>
-        </>
+        </div >
     );
     
 }

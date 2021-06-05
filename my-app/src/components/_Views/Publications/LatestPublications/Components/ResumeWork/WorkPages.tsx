@@ -16,50 +16,11 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 
 import { IState } from '../../../../../../reducers';
 import { IPostsReducer } from '../../../../../../reducers/postReducer';
+import { IUsersReducer } from '../../../../../../reducers/usersReducers';
 import { useSelector } from 'react-redux';
 import WorkPost from './WorkPost';
-/*
+import { ICommentsReducer } from '../../../../../../reducers/commentsReducer';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      padding:'0px',
-      margin:'0px',
-      width: '500px',
-      backgroundColor: theme.palette.background.paper,
-    },
-    publicationsListItem:{
-      paddingTop:'0px',
-      paddingBottom:'0px'
-    }
-  }),
-);
-
-export default function PublicationsList() {
-    
-  const {postsList}=useSelector<IState,IPostsReducer>(globalState=>globalState.posts)
-  var postArray=[]
-  postsList.forEach(post => {
-        postArray.push(<WorkPost userId={post.userId} id={post.id} title={post.title} body={post.body}/>)
-    })
-
-  const classes = useStyles();
-      return (
-        <div className={classes.root}>
-          {/*
-          postsList.map((value,index)=>{
-            return(
-              <ListItem className={classes.publicationsListItem}>
-                <WorkPost userId={value.userId} id={value.id} title={value.title} body={value.body}/>)
-              </ListItem>
-            );
-          })
-        }
-          
-        </div>
-      );
-}
-*/
 
 const useStyles1 = makeStyles((theme: Theme) =>
   createStyles({
@@ -128,8 +89,8 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-function createData(userId: number,id: number, title:string, body:string) {
-  return { userId, id, title, body };
+function createData(userId: number,id: number, title:string, body:string, author:string) {
+  return { userId, id, title, body, author };
 }
 
 const useStyles2 = makeStyles({
@@ -140,10 +101,14 @@ const useStyles2 = makeStyles({
 
 export default function CustomPaginationActionsTable() {
 
+  const { usersList } = useSelector<IState, IUsersReducer>(globalState => globalState.users);
+  const {commentsList}=useSelector<IState, ICommentsReducer>(globalState =>globalState.comments);
   const {postsList}=useSelector<IState,IPostsReducer>(globalState=>globalState.posts)
-      var postArray=[]
-      postsList.forEach(post => {
-      postArray.push(createData(post.userId,post.id, post.title, post.body))//<WorkPost userId={post.userId} id={post.id} title={post.title} body={post.body}/>
+
+  var postArray:any[];
+  postArray=[]
+  postsList.forEach(post => {
+    postArray.push(createData(post.userId,post.id, post.title, commentsList?.[post.id]?.body, usersList?.[post.userId]?.name))//<WorkPost userId={post.userId} id={post.id} title={post.title} body={post.body}/>
   })
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
@@ -161,12 +126,12 @@ export default function CustomPaginationActionsTable() {
       <Table className={classes.table} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
-            ? postsList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : postsList
-          ).map((post) => (
-            <TableRow key={post.id}>
+            ? postArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : postArray
+          ).map((element) => (
+            <TableRow key={element.id}>
               <TableCell component="th" scope="row">
-                <WorkPost userId={post.userId} id={post.id} title={post.title} body={post.body}/>
+                <WorkPost userId={element.userId} id={element.id} title={element.title} body={element.body} author={element.author}/>
               </TableCell>
             </TableRow>
           ))}

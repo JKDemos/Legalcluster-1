@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import {useSelector} from 'react-redux'
 import {IState} from '../../../../../reducers'
 import {IUsersReducer} from '../../../../../reducers/usersReducers'
-import {IPhotoReducer} from '../../../../../reducers/photoReducers'
+import {IPhotosReducer} from '../../../../../reducers/photosReducers'
 import {IPostsReducer} from '../../../../../reducers/postReducer'
 
 const Styles= makeStyles((theme: Theme) =>
