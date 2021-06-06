@@ -83,7 +83,7 @@ export function LeftSideMenu() {
                                 </Link>
                             </ListItem>
                             <ListItem button>
-                                <Link to='/'>
+                                <Link to='/entities'>
                                 <ListItemText primary="Entities" />
                                 </Link>
                             </ListItem>

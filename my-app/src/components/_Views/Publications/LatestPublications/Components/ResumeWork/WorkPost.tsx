@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{FC} from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { IWorkPost } from './IWorkPost';
 
@@ -31,7 +31,7 @@ createStyles({
   },
 })
 );
-const WorkPost: React.FC<IWorkPost>=({userId, id, title, body, author}: IWorkPost)=> {
+const WorkPost:FC<IWorkPost>=({userId, id, title, body, author}: IWorkPost)=> {
   var client:string;
   if(id%2===0){
     client='Supplier contract'

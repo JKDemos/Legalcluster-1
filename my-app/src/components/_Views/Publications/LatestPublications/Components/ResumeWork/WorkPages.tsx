@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,8 +13,10 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import TextField from '@material-ui/core/TextField';
 
 import { IState } from '../../../../../../reducers';
+
 import { IPostsReducer } from '../../../../../../reducers/postReducer';
 import { IUsersReducer } from '../../../../../../reducers/usersReducers';
 import { useSelector } from 'react-redux';
@@ -105,13 +107,15 @@ export default function CustomPaginationActionsTable() {
   const {commentsList}=useSelector<IState, ICommentsReducer>(globalState =>globalState.comments);
   const {postsList}=useSelector<IState,IPostsReducer>(globalState=>globalState.posts)
 
-  var postArray:any[];
-  postArray=[]
+  var postDataArray:any[];
+  postDataArray=[]
   postsList.forEach(post => {
-    postArray.push(createData(post.userId,post.id, post.title, commentsList?.[post.id]?.body, usersList?.[post.userId]?.name))//<WorkPost userId={post.userId} id={post.id} title={post.title} body={post.body}/>
+    postDataArray.push(createData(post.userId,post.id, post.title, commentsList?.[post.id]?.body, usersList?.[post.userId]?.name))//<WorkPost userId={post.userId} id={post.id} title={post.title} body={post.body}/>
   })
+
+  let [postArray, setPostArray]=useState(postDataArray)
   const classes = useStyles2();
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] =useState(0);
 
   const rowsPerPage=10;
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, postsList.length - page * rowsPerPage);
@@ -119,15 +123,31 @@ export default function CustomPaginationActionsTable() {
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
-
+  console.log('test'+postArray+'testend')
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
         <TableBody>
+          <TableRow>
+              <TableCell>
+                <form noValidate autoComplete="off">
+                  <TextField
+                   id="outlined-basic"
+                   label="Filter by title..."
+                   variant="outlined"
+                   onChange={
+                     event=>postDataArray.filter(function(e){
+                       return e.title.includes(event.target.value)
+                     })
+                    }
+                  />
+                </form>
+              </TableCell>
+            </TableRow>
           {(rowsPerPage > 0
-            ? postArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : postArray
+            ? postDataArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : postDataArray
           ).map((element) => (
             <TableRow key={element.id}>
               <TableCell component="th" scope="row">
