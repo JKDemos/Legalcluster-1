@@ -1,10 +1,10 @@
 import React, {FC} from "react";
-import { IPhotosReducer } from "../../../../../reducers/photosReducers";
-import { IState } from "../../../../../reducers";
+import { IPhotosReducer } from "../../../../reducers/photosReducers";
+import { IState } from "../../../../reducers";
 import {useSelector} from 'react-redux'
 import { useParams } from 'react-router';
 
-import { Banner, CorporateTextArea,IconContainer,TextContainer } from "../../../../_Components/CorporateHoldings/CorporateHoldings";
+import { Banner, CorporateTextArea,IconContainer,TextContainer } from "../../../_Components/CorporateHoldings/CorporateHoldings";
 
 export const CorporateHoldings:FC=()=>{
     const {photosList} = useSelector<IState,IPhotosReducer>(globalState=>globalState.photos)

@@ -1,7 +1,7 @@
 import React,{FC} from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { IEcosystemPost } from './IEcosystemPost';
-import { WorkPostContainer, WorkPostTextArea,WorkPostHeader,WorkPostFooter } from '../../../../_Components/WorkPages/WorkPost';
+import { IResume } from './IResumePost';
+import { WorkPostContainer, WorkPostTextArea,WorkPostHeader,WorkPostFooter } from '../../../_Components/WorkPages/WorkPost';
 
 const Styles= makeStyles((theme: Theme) =>
 createStyles({
@@ -18,7 +18,7 @@ createStyles({
   },
 })
 );
-const EcosystemPost:FC<IEcosystemPost>=({id, company, body, author, imageUrl}: IEcosystemPost)=> {
+const ResumePost:FC<IResumePost>=({id, company, body, author, imageUrl}: IResumePost)=> {
   var client:string;
   if(id%2===0){
     client='Supplier contract'

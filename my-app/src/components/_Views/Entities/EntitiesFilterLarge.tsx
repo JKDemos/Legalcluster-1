@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }}));
 
-export const EntityFilter:FC=()=>{
+export const EntityFilterLarge:FC=()=>{
   const classes = useStyles();
     const [filterTarget, setFilterTarget] = useState('Company');
     const [filterCriteria, setFilterCriteria] = useState('Contains');
+    const [filterCriteria2, setFilterCriteria2] = useState('In');
   
 
     return(
@@ -56,6 +57,24 @@ export const EntityFilter:FC=()=>{
           id="demo-simple-select"
           value={filterCriteria}
           onChange={event=>{setFilterCriteria(event.target.value as string)}}
+        >
+          <MenuItem value={10}>Contains</MenuItem>
+          <MenuItem value={20}>Is</MenuItem>
+          <MenuItem value={30}>Ends before</MenuItem>
+        </Select>
+      </FormControl>
+
+      <form className={classes.textInput} noValidate autoComplete="off">
+        <StandardInput
+            placeholder="Type..."
+        />
+      </form>
+      <FormControl className={classes.formControl}>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={filterCriteria2}
+          onChange={event=>{setFilterCriteria2(event.target.value as string)}}
         >
           <MenuItem value={10}>Contains</MenuItem>
           <MenuItem value={20}>Is</MenuItem>

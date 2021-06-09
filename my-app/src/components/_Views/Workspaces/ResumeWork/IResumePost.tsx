@@ -1,4 +1,4 @@
-export interface IEcosystemPost{
+export interface IResumePost{
     id:number
     company:string
     body:string

@@ -14,7 +14,7 @@ import {LatestPublications} from './components/_Views/Publications/LatestPublica
 import {Entities} from './components/_Views/Entities/Entities';
 import {Ecosystem} from './components/_Views/Ecosystem/Ecosystem';
 import {Profile} from './components/Profile/Profile'
-import {Workspaces} from './components/_Views/Publications/Workspaces/Workspaces'
+import {Workspaces} from './components/_Views/Workspaces/Workspaces'
 import {TestView} from './components/_Views/Test/Test'
 
 type GetUsers=ReturnType<typeof getUsers>

@@ -18,6 +18,12 @@ justify-content: space-between;
 export const WorkPagesRightMenu=styled.div`
     display: flex;
     form{
+        margin-top: 16px;
         max-height: 20px;
+        margin-right: 0px;
+    }
+    select{
+        margin-top: 16px;
+        margin-left: 0px;
     }
 `;

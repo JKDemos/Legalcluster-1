@@ -9,8 +9,8 @@ import {EntitiesFilterMenu} from '../Entities/EntitiesFilterMenu'
 import { Entity } from './Entity';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton'
-import TextField from '@material-ui/core/TextField';
-import { EntitiesContainer, EntitiesControlBar, EntitiesHeader } from '../../_Components/Common/Entities';
+import { DisplayControls, EntitiesContainer, EntitiesControlBar, EntitiesHeader, EntitiesPage, EntityListControls } from '../../_Components/Common/Entities';
+import { StandardInput } from '../../_Components/Common/Common';
 //icons
 import SettingsIcon from '@material-ui/icons/Settings';
 import SortIcon from '@material-ui/icons/Sort';
@@ -48,6 +48,30 @@ export const Entities:FC=()=> {
     {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
     {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
     {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'World company SAS',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[10].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'Subsid Corp Ltd',thumbnail:photosList[11].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
+    {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'},
     {name:'ABC generic company',thumbnail:photosList[12].url, address:'Caracas 1050, Distro Capital, Venezuela'}
   ])
 
@@ -55,15 +79,11 @@ export const Entities:FC=()=> {
   const [sort, setSort] = useState(true)
   const [wrapperRef, dropdownOpen, toggleDropdown]=useDropdown();
   let [fullscreen,setFullscreen] = useState(true)
-  let [displayModeList,setDisplayModeList] = useState(true)
+  let [displayModeList,setDisplayModeList] = useState(false)
 
   function toggleFullscreen(){
-    if(fullscreen === true){
-      setFullscreen(false)
-     }
-     else if(fullscreen === false){
-      setFullscreen(true)
-  }
+    console.log('toggleFullscreen')
+    setFullscreen(!fullscreen)
   }
 
   function sortEntities() {
@@ -85,18 +105,22 @@ export const Entities:FC=()=> {
   }
 
     return (
-        <EntitiesContainer>
-          <EntitiesControlBar>
-            
+      <EntitiesPage>
+      <div className={fullscreen === true?(''):('fullscreen')}> 
+      <EntitiesControlBar>           
             <EntitiesHeader>
-              <p>Entities</p>
-              <IconButton color="primary" onClick={setMosaic}>
-                <AppsIcon/>
-              </IconButton>
-              <IconButton color="primary"onClick={setList}>
-                <ListIcon/>
-              </IconButton>
+              <h3>Entities</h3>
+              <DisplayControls>
+                <IconButton color="primary" onClick={setMosaic}>
+                  <AppsIcon/>
+                </IconButton>
+                <IconButton color="primary"onClick={setList}>
+                  <ListIcon/>
+                </IconButton>
+              </DisplayControls>
+
             </EntitiesHeader>
+            <EntityListControls>
             <Button
                 variant="contained"
                 //color="secondary"
@@ -136,12 +160,14 @@ export const Entities:FC=()=> {
               onClick={() => navigator.clipboard.writeText('http://localhost:3000/Entities')}
             >
               Share
-          </Button>
-            <TextField
-              label="Search..."
-              variant="outlined"
+            </Button>
+            <StandardInput
+              placeholder="Search..."
               onChange={event =>{setSearchInput(event.target.value)}}
             />
+          </EntityListControls>
+          
+            
           </EntitiesControlBar>
           {
             dropdownOpen &&
@@ -149,7 +175,8 @@ export const Entities:FC=()=> {
               <EntitiesFilterMenu/>
             </EntitiesControlBar>
           }
-
+        <EntitiesContainer>
+        <div className={displayModeList === true?('list'):('mosaic')}> 
           {companies.filter((value)=>{
                   if(searchInput===''){
                       return value;
@@ -159,6 +186,9 @@ export const Entities:FC=()=> {
               }).map(company=>(
             <Entity title={company.name} imageUrl={company.thumbnail} adress={company.address}/>
           ))}
+          </div>
         </EntitiesContainer>
+        </div>
+        </EntitiesPage>
     );
   }

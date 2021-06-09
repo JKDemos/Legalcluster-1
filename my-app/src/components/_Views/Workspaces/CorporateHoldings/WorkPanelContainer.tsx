@@ -3,9 +3,9 @@ import { ExploreEntities } from "../WorkPanels/ExploreEntities";
 import { ExploreCalendar } from "../WorkPanels/ExploreCalendar";
 import { ExploreOwnership } from "../WorkPanels/ExploreOwnership";
 
-import { CommonPanelContainer } from "../../../../_Components/CorporateHoldings/WorkPanel";
-import { FullWidthContainer } from "../../../../_Components/Common/DataLayouts";
-import { CommonPanelWrapper } from "../../../../_Components/CorporateHoldings/WorkPanel";
+import { CommonPanelContainer } from "../../../_Components/CorporateHoldings/WorkPanel";
+import { FullWidthContainer } from "../../../_Components/Common/DataLayouts";
+import { CommonPanelWrapper } from "../../../_Components/CorporateHoldings/WorkPanel";
 
 export const WorkPanelContainer:FC=()=>{
     return(

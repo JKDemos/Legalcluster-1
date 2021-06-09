@@ -12,21 +12,19 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { IState } from '../../../../../reducers';
-import { IPostsReducer } from '../../../../../reducers/postReducer';
-import { IUsersReducer } from '../../../../../reducers/usersReducers';
-import { IPhotosReducer } from '../../../../../reducers/photosReducers';
-import { ICommentsReducer } from '../../../../../reducers/commentsReducer';
+import { IState } from '../../../../reducers';
+import { IPostsReducer } from '../../../../reducers/postReducer';
+import { IUsersReducer } from '../../../../reducers/usersReducers';
+import { IPhotosReducer } from '../../../../reducers/photosReducers';
+import { ICommentsReducer } from '../../../../reducers/commentsReducer';
 import { useSelector } from 'react-redux';
 
-import EcosystemPost from './EcosystemPost';
-import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu, TableMenu } from '../../../../_Components/WorkPages/WorkPages';
-import { WorkPanelFilters } from '../../../../_Components/CorporateHoldings/WorkPanel';
-import { FlexRow } from '../../../../_Components/Common/DataLayouts';
-
+import EcosystemPost from './ResumePost';
+import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu, TableMenu } from '../../../_Components/WorkPages/WorkPages';
+import { WorkPanelFilters } from '../../../_Components/CorporateHoldings/WorkPanel';
+import { StandardInput } from '../../../_Components/Common/Common';
 
 const useStyles1 = makeStyles((theme: Theme) =>
   createStyles({
@@ -156,11 +154,7 @@ export default function CustomPaginationActionsTable() {
                 <h2>Latest updates</h2>
                 <WorkPagesRightMenu>
                 <form>
-                  <TextField
-                    className={classes.searchInput}
-                    id="outlined-basic"
-                    label="Filter by company..."
-                    variant="outlined"
+                  <StandardInput
                     onChange={
                      event=>setSearchInput(event.target.value)
                      }

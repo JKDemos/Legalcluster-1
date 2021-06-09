@@ -23,6 +23,7 @@ import { useSelector } from 'react-redux';
 import WorkPost from './WorkPost';
 import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu, TableMenu } from '../../../../../_Components/WorkPages/WorkPages';
 import { FlexRow } from '../../../../../_Components/Common/DataLayouts';
+import { StandardInput } from '../../../../../_Components/Common/Common';
 
 
 const useStyles1 = makeStyles((theme: Theme) =>
@@ -149,12 +150,8 @@ export default function CustomPaginationActionsTable() {
                 <h2>Resume your work</h2>
                 <WorkPagesRightMenu>
                 <form>
-                  <TextField
-                    className={classes.searchInput}
-                    id="outlined-basic"
-                    label="Filter by contents..."
-                    variant="outlined"
-                    margin="none"
+                  <StandardInput
+                    placeholder='Search by content...'
                     onChange={
                      event=>setSearchInput(event.target.value)
                      }

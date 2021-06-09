@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 
-import { PanelContainer } from "../../../../_Components/CorporateHoldings/WorkPanel";
+import { PanelContainer } from "../../../_Components/CorporateHoldings/WorkPanel";
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 export const ExploreCalendar:FC=()=>{
