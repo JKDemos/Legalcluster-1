@@ -1,6 +1,6 @@
 import React,{FC} from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { IResume } from './IResumePost';
+import { IResumePost } from './IResumePost';
 import { WorkPostContainer, WorkPostTextArea,WorkPostHeader,WorkPostFooter } from '../../../_Components/WorkPages/WorkPost';
 
 const Styles= makeStyles((theme: Theme) =>
@@ -19,16 +19,7 @@ createStyles({
 })
 );
 const ResumePost:FC<IResumePost>=({id, company, body, author, imageUrl}: IResumePost)=> {
-  var client:string;
-  if(id%2===0){
-    client='Supplier contract'
-  }
-  else if(id%3===0){
-    client='Corporate contract'
-  }
-  else{
-    client='Client contract'
-  }
+
   const classes=Styles()
   console.log({imageUrl})
   return(
@@ -51,4 +42,4 @@ const ResumePost:FC<IResumePost>=({id, company, body, author, imageUrl}: IResume
     </WorkPostContainer>
   );
 }
-export default EcosystemPost;
+export default ResumePost;
