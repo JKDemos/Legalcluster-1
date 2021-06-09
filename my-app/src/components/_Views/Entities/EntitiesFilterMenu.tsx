@@ -6,6 +6,8 @@ export const EntitiesFilterMenu:FC=()=>{
         <>
         <p>Rows are filtered by following conditions starting from the top...</p>
         <EntityFilter/>
+        <EntityFilter/>
+        <EntityFilter/>
         </>
     )
 }

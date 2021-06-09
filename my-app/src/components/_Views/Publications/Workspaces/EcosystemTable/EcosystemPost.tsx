@@ -1,7 +1,7 @@
 import React,{FC} from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { IWorkPost } from './IWorkPost';
-import { WorkPostContainer, WorkPostTextArea,WorkPostHeader,WorkPostFooter } from '../../../../../_Components/WorkPages/WorkPost';
+import { IEcosystemPost } from './IEcosystemPost';
+import { WorkPostContainer, WorkPostTextArea,WorkPostHeader,WorkPostFooter } from '../../../../_Components/WorkPages/WorkPost';
 
 const Styles= makeStyles((theme: Theme) =>
 createStyles({
@@ -18,7 +18,7 @@ createStyles({
   },
 })
 );
-const WorkPost:FC<IWorkPost>=({id, body, author, imageUrl}: IWorkPost)=> {
+const EcosystemPost:FC<IEcosystemPost>=({id, company, body, author, imageUrl}: IEcosystemPost)=> {
   var client:string;
   if(id%2===0){
     client='Supplier contract'
@@ -36,16 +36,14 @@ const WorkPost:FC<IWorkPost>=({id, body, author, imageUrl}: IWorkPost)=> {
       <div className={classes.newsContainer}>
         <div className={classes.textarea}>
           <WorkPostHeader>
-            <h3>Post #{id}</h3>
+            <h3>World Company {company}</h3>
           </WorkPostHeader>
           <WorkPostTextArea>
               <p>{body}</p>
           </WorkPostTextArea>
           <WorkPostFooter>
             <img src={imageUrl} alt="logo"/>
-            <p>Subsid.corp.</p>
-            <img src={imageUrl} alt="contact"/>
-            <p>{client}</p>
+            <p>SAS</p>
             <p>Updated 3 days ago by {author}</p>
           </WorkPostFooter>
         </div>
@@ -53,4 +51,4 @@ const WorkPost:FC<IWorkPost>=({id, body, author, imageUrl}: IWorkPost)=> {
     </WorkPostContainer>
   );
 }
-export default WorkPost;
+export default EcosystemPost;

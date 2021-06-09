@@ -1,4 +1,4 @@
-import React, {FC,useEffect} from 'react';
+import React, {FC,useEffect, useState} from 'react';
 import PrimaryAppSearchBar from './components/TopNav/TopNav'
 import {LeftSideMenu} from './components/LeftSideMenu/LeftSideMenu';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,11 +14,13 @@ import {LatestPublications} from './components/_Views/Publications/LatestPublica
 import {Entities} from './components/_Views/Entities/Entities';
 import {Ecosystem} from './components/_Views/Ecosystem/Ecosystem';
 import {Profile} from './components/Profile/Profile'
+import {Workspaces} from './components/_Views/Publications/Workspaces/Workspaces'
 
 type GetUsers=ReturnType<typeof getUsers>
 type GetPhotos=ReturnType<typeof getPhotos>
 type GetPosts=ReturnType<typeof getPosts>
 type GetComments=ReturnType<typeof getComments>
+
 
 const Styles = makeStyles({
     content: {
@@ -60,6 +62,7 @@ const MainPage: FC =() => {
                     <Route path='/entities' exact component={Entities}/>
                     <Route path='/ecosystem' exact component={Ecosystem}/>
                     <Route path='/profile' exact component={Profile}/>
+                    <Route path='/workspaces' exact component={Workspaces}/>
                 </Switch>
         </div>
         </div>

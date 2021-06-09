@@ -1,33 +1,19 @@
 import React,{FC} from 'react';
-import { styled, makeStyles } from '@material-ui/core/styles';
-
-
 import PublicationsList from './Components/PublicationsList';
 import LastPublication from './Components/LastPublication';
 import Workspaces from './Components/Workspaces'
 import CustomPaginationActionsTable from './Components/ResumeWork/WorkPages'
-
-const useStyles = makeStyles({
-  PageContainer: {
-   display:'flex',
-   flexDirection:'column',
-  },
-  PublicationsContainer:{
-    display:'flex',
-    width:'1400px',
-    flexDirection:'row',
-  }
-});
+import { FullWidthContainer } from '../../../_Components/Common/DataLayouts';
+import { PublicationsModule } from '../../../_Components/Publications/Publications';
 export const LatestPublications:FC=()=> {
-  const classes = useStyles();
   return (
-      <div className={classes.PageContainer}>
-        <div className={classes.PublicationsContainer}>
+      <FullWidthContainer>
+        <PublicationsModule>
           <LastPublication/>
           <PublicationsList/>
-        </div>
+        </PublicationsModule>
         <Workspaces/>
         <CustomPaginationActionsTable/>
-      </div>
+      </FullWidthContainer>
   );
 }

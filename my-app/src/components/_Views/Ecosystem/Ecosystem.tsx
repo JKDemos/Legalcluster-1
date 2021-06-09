@@ -1,12 +1,10 @@
 import React,{FC} from 'react';
-import Container from '@material-ui/core/Container';
+import { CorporateContainer, CorporateMainContainer } from '../../_Components/CorporateHoldings/CorporateCommon';
 
 export const Ecosystem:FC=()=> {
   return (
-    <React.Fragment>
-      <Container maxWidth="sm">
-        <p>Ecosystem</p>
-      </Container>
-    </React.Fragment>
+    <CorporateMainContainer>
+      <h2>Ecosystem</h2>
+    </CorporateMainContainer>
   );
 }

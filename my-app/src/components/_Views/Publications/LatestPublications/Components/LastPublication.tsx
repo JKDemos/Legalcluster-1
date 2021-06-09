@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{FC} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -7,6 +7,10 @@ import {useSelector} from 'react-redux'
 import {IState} from '../../../../../reducers'
 import {IUsersReducer} from '../../../../../reducers/usersReducers'
 import {IPostsReducer} from '../../../../../reducers/postReducer'
+import { IPhotosReducer } from '../../../../../reducers/photosReducers';
+
+import { LastPublications, PublicationsAuthor, LastPublicationText } from '../../../../_Components/Publications/Publications';
+
 
 const Styles = makeStyles({
   root: {
@@ -33,23 +37,31 @@ const Styles = makeStyles({
   }
 });
 
-export default function LastPublication() {
+const LastPublication:FC=()=> {
   const classes = Styles();
   const {usersList} = useSelector<IState,IUsersReducer>(globalState=>globalState.users)
   const {postsList}=useSelector<IState,IPostsReducer>(globalState=>globalState.posts)
+  const {photosList} = useSelector<IState,IPhotosReducer>(globalState=>globalState.photos)
   return(
-    <React.Fragment>
-      <CssBaseline />
-      <Container className={classes.root}>
-      <div className={classes.rootGradient}>
-      <p>{postsList?.[1]?.body}</p>
-      <div className={classes.authorBox}>
-        <p>24 jan 2021</p>
-        <Avatar alt="John Doe" src={'https://source.unsplash.com/jBTMrR6Q334'} />
-        <p >{usersList?.[1]?.name}</p>
+    <LastPublications>
+      <div className="backgroundImage"
+        style={{
+          backgroundImage:`url(${photosList?.[0]?.url})`,
+          width:'100%',
+          height:'100%',
+          backgroundSize:'cover',
+        }}
+      >
+      <LastPublicationText>
+        <p>{postsList?.[1]?.body}</p>
+        <PublicationsAuthor>
+          <p>24 jan 2021</p>
+          <Avatar alt="John Doe" src={photosList[1]?.url} />
+          <p >{usersList?.[1]?.name}</p>
+        </PublicationsAuthor>
+        </LastPublicationText>
       </div>
-      </div>
-      </Container>
-    </React.Fragment>
+    </LastPublications>
   )
 }
+export default LastPublication;

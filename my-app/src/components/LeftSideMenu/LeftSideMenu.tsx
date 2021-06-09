@@ -3,60 +3,47 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
 import {Icons} from '../../styledHelpers/Icons';
 import Divider from '@material-ui/core/Divider';
 import {BrowserRouter as Router,Link} from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
-
 import {useSelector} from 'react-redux'
 import {IState} from '../../reducers'
 import {IUsersReducer} from '../../reducers/usersReducers'
-//Card
-const Profile = styled.div`
-justify-content:center;
-text-align:center;
-background:gray;
-p{
-    margin-top:5px;
-    margin-bottom:10px;
-}
-img{
-    margin-top:20px;
-}
-`
-const PersonalMenu = styled.div`
-`
-const PersonalMenuItem = styled.div`
-margin-top:10px;
-margin-bottom:10px;
-display:flex;
-align-items:center;
-justify-content:space-around;
-img{
-margin-right:8px;
-margin-left:8px;
-}
-`
-//Menu
-const LeftMenu = styled.div`
-width:300px;
-margin-left:10px;
-margin-top:10px;
-`
-export function LeftSideMenu() {
+import { IPhotosReducer } from '../../reducers/photosReducers';
+//components
+import { Profile, PersonalMenu, PersonalMenuItem, LeftMenu, MenuHeader } from '../_Components/LeftSideMenu';
+//material icons
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import WidgetsIcon from '@material-ui/icons/Widgets';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    menuItem: {
+        marginRight:'40px',
+        textDecoration:'none'
+      },
+  }),
+);
+
+export const LeftSideMenu:FC=()=>{
 
     const {usersList} = useSelector<IState,IUsersReducer>(globalState=>globalState.users)
-
+    const {photosList} = useSelector<IState,IPhotosReducer>(globalState=>globalState.photos)
+    const classes = useStyles();
     return (
         //karta z zdjęciem po lewej
     <LeftMenu>    
         <Card>
             <Profile>
-                <Avatar alt='aaa' src={'https://source.unsplash.com/jBTMrR6Q334'} />
+                <MenuHeader>
+                <Link to="/profile">
+                <img src={photosList[0]?.url} alt='Profile' />
                 <p >{usersList?.[0]?.name}</p>
-                <p id="job">Job Title</p>
+                <p id="job">{usersList?.[0]?.company.name}</p>
+                </Link>
+                </MenuHeader>
                 <Divider/>
                 <PersonalMenu>
                     <PersonalMenuItem>
@@ -72,21 +59,24 @@ export function LeftSideMenu() {
                 </PersonalMenu>
             </Profile>
                     <List>
+                        <Link to='/'>
                             <ListItem button>
-                                <Link to='/'>
-                                <ListItemText primary="Publications" />
-                                </Link>
+                                <AssignmentIcon className={classes.menuItem}/>
+                                <ListItemText primary="Publications"/>
                             </ListItem>
+                        </Link>
+                        <Link to='/ecosystem'>
                             <ListItem button>
-                                <Link to='/ecosystem'>
-                                <ListItemText primary="Ecosystem" />
-                                </Link>
+                                <WidgetsIcon className={classes.menuItem}/>
+                                <ListItemText primary="Ecosystem"/>
                             </ListItem>
+                        </Link>
+                        <Link to='/entities'>
                             <ListItem button>
-                                <Link to='/entities'>
+                                <AccountBalanceIcon className={classes.menuItem}/>
                                 <ListItemText primary="Entities" />
-                                </Link>
                             </ListItem>
+                        </Link>
                     </List>
         </Card>
     </LeftMenu>

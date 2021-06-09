@@ -11,3 +11,6 @@ export const LabelContainer = styled.div`
         background:none;
     }
 `;
+export const FullWidthContainer=styled.div`
+    width: 100%;
+`;

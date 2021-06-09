@@ -7,6 +7,7 @@ import {IUsersReducer} from '../../reducers/usersReducers'
 
 //COMP0NENTS
 import Avatar from '@material-ui/core/Avatar';
+import { UserMenu,UserMenuItem, ScrollArea, LogoutBar, FilterBox } from '../_Components/TopNav/TopNav';
 //ICONS
 import HomeIcon from '@material-ui/icons/Home';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -30,146 +31,162 @@ export const ExpandMenu: FC = () => {
      }
 
     return(
-        <ul>
-        <li><input type="text" value={inputText} onChange={handleInputChange}   className="inputTopBarFilter" placeholder='Filter...'/></li>
-        <li id="group">Platform</li>
+        <UserMenu>
+            <FilterBox>
+                <input type="text" value={inputText} onChange={handleInputChange}   className="inputTopBarFilter" placeholder='Filter...'/>
+            </FilterBox>
+        <ScrollArea>
+        <p>Platform</p>
 
         {"Home".toLowerCase().includes(inputText.toLowerCase()) &&
             <Link to="/">
-                <li><HomeIcon/><p>Home</p></li>
-
+                <UserMenuItem>
+                    <HomeIcon/><p>Home</p>
+                </UserMenuItem>
             </Link>
         }
 
         {"Publications".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-            <li><AssignmentIcon/><p>Publications</p></li>
+                <UserMenuItem>
+                    <AssignmentIcon/><p>Publications</p>
+                </UserMenuItem>
         </Link>
         }
 
         {"People".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><PeopleAltIcon/><p>People</p></li>
+                <UserMenuItem>
+                    <PeopleAltIcon/><p>People</p>
+                </UserMenuItem>
         </Link>
         }
           
         {"Entities".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><BusinessIcon/><p>Entities</p></li>
+            <UserMenuItem>
+                <BusinessIcon/><p>Entities</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Administration".toLowerCase().includes(inputText.toLowerCase()) &&   
         <Link to="/">
-        <li><SupervisorAccountIcon/><p>Administration</p></li>
+            <UserMenuItem>
+                <SupervisorAccountIcon/><p>Administration</p>
+            </UserMenuItem>
         </Link>
         }
 
 
-        <li id="group">Workspaces</li>
+        <p>Workspaces</p>
 
         {"client contract".toLowerCase().includes(inputText.toLowerCase()) && 
         <Link to="/">
-        <li><AssignmentIcon/><p>Client contract</p></li>
+            <UserMenuItem>
+                <AssignmentIcon/><p>Client contract</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Supplier contract".toLowerCase().includes(inputText.toLowerCase()) && 
         <Link to="/">
-        <li><AssignmentIcon/><p>Supplier contract</p></li>
+            <UserMenuItem>
+                <AssignmentIcon/><p>Supplier contract</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Corporate".toLowerCase().includes(inputText.toLowerCase()) && 
         <Link to="/">
-        <li><BusinessIcon/><p>Corporate</p></li>
+            <UserMenuItem>
+                <BusinessIcon/><p>Corporate</p>
+            </UserMenuItem>
         </Link>
         }
                
         {"Group Norms".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><GavelIcon/><p>Group Norms</p></li>
+            <UserMenuItem>
+                <GavelIcon/><p>Group Norms</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Estate contracts".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><AssignmentIcon/><p>Estate contracts</p></li>
-        </Link>
+            <UserMenuItem>
+                <AssignmentIcon/><p>Estate contracts</p>
+            </UserMenuItem>
+         </Link>
         }
 
         {"Commercial".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><AssignmentIcon/><p>Commercial</p></li>
+            <UserMenuItem>
+                <AssignmentIcon/><p>Commercial</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Shops".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><BusinessIcon/><p>Shops</p></li>
+            <UserMenuItem>
+                <BusinessIcon/><p>Shops</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Business".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><BusinessIcon/><p>Business</p></li>
+            <UserMenuItem>
+                <BusinessIcon/><p>Business</p>
+            </UserMenuItem>
         </Link>
          }
 
         {"Manager".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><SupervisorAccountIcon/><p>Manager</p></li>
+            <UserMenuItem>
+                <SupervisorAccountIcon/><p>Manager</p>
+            </UserMenuItem>
         </Link>
         }
 
         {"Online".toLowerCase().includes(inputText.toLowerCase()) &&
         <Link to="/">
-        <li><BookmarkBorderIcon/><p>Online</p></li>
+            <UserMenuItem>
+                <BookmarkBorderIcon/><p>Online</p>
+            </UserMenuItem>
         </Link>
         }
-
-        <li id="group">Account</li>
+        </ScrollArea>
+        <p>Account</p>
         <Link to='/profile'>
-            <li> <Avatar alt='aaa' src={'https://source.unsplash.com/jBTMrR6Q334'} />
-            <div>
-            <p >{usersList?.[0]?.name}</p><p>See profile</p>
-            </div>
-            </li>
+            <UserMenuItem>
+                <Avatar alt='aaa' src={'https://source.unsplash.com/jBTMrR6Q334'} />
+                    <div>
+                    <p >{usersList?.[0]?.name}</p><p>See profile</p>
+                    </div>
+            </UserMenuItem>
         </Link>
         <Link to="/">
-            <li><LockIcon/><p>Privacy</p></li>
+            <UserMenuItem>
+                <LockIcon/><p>Privacy</p>
+            </UserMenuItem>
         </Link>
         <Link to="/">
-            <li id="Settings"><SettingsIcon/><p>Settings</p></li>
+            <UserMenuItem>
+            <SettingsIcon/><p>Settings</p>
+            </UserMenuItem>   
         </Link>
-        <Link to="/">
-            <li><ExitToAppIcon/><p>Logout</p></li> 
-        </Link>
-        </ul>
+        <LogoutBar>
+            <Link to="/">
+                <UserMenuItem>
+                    <ExitToAppIcon/><p>Logout</p>
+                </UserMenuItem>
+            </Link>
+        </LogoutBar>
+        </UserMenu>
     );
-
 };
-/*
-return(
-        <ul>
-            <li><input type="text" placeholder='Filter...'/></li>
-            <li>Platform</li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Home</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Publications</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>People</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Entities</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Administration</p></li>
-            <li>Workspaces</li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Client contract</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Supplier contract</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Corporate</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Group Norms</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Real estate contracts</p></li>
-            <li>Account</li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>name</p><p>See profile</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Privacy</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Settings</p></li>
-            <li><img src={Icons.house2Icon} alt="house icon"/><p>Logout</p></li>
-        </ul>
-    );
-*/

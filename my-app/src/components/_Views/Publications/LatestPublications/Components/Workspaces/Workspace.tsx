@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 
 import { IWorkspace } from './IWorkspace';
 
+import { WorkspaceIconContainer } from '../../../../../_Components/Other/Workspace';
+
 const useStyles = makeStyles({
   root: {
     marginLeft:10,
@@ -19,18 +21,22 @@ const useStyles = makeStyles({
   },
 });
 
-const Workspace: React.FC<IWorkspace>=({workspaceType, clientType, clientCount}: IWorkspace)=> { 
+const Workspace: React.FC<IWorkspace>=({photoUrl,iconUrl,workspaceType, clientType, clientCount}: IWorkspace)=> { 
   const classes = useStyles();
-
+  const iconAdress='../../../../../../icons/'+iconUrl
+  console.log(iconAdress)
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://source.unsplash.com/cfE67Nz8E34"//"/static/images/cards/contemplative-reptile.jpg"
+          image={photoUrl}//"/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>
+          <WorkspaceIconContainer>
+            <img src={iconAdress} alt='icon'/>
+          </WorkspaceIconContainer>
           <Typography gutterBottom variant="h5" component="h2">
             <p>{workspaceType}</p>
           </Typography>

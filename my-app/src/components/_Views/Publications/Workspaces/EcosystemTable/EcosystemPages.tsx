@@ -10,19 +10,22 @@ import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
-import { IState } from '../../../../../../reducers';
-import { IPostsReducer } from '../../../../../../reducers/postReducer';
-import { IUsersReducer } from '../../../../../../reducers/usersReducers';
-import { IPhotosReducer } from '../../../../../../reducers/photosReducers';
-import { ICommentsReducer } from '../../../../../../reducers/commentsReducer';
+import { IState } from '../../../../../reducers';
+import { IPostsReducer } from '../../../../../reducers/postReducer';
+import { IUsersReducer } from '../../../../../reducers/usersReducers';
+import { IPhotosReducer } from '../../../../../reducers/photosReducers';
+import { ICommentsReducer } from '../../../../../reducers/commentsReducer';
 import { useSelector } from 'react-redux';
 
-import WorkPost from './WorkPost';
-import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu } from '../../../../../_Components/WorkPages/WorkPages';
-import { FlexRow } from '../../../../../_Components/Common/DataLayouts';
+import EcosystemPost from './EcosystemPost';
+import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu } from '../../../../_Components/WorkPages/WorkPages';
+import { WorkPanelFilters } from '../../../../_Components/CorporateHoldings/WorkPanel';
+import { FlexRow } from '../../../../_Components/Common/DataLayouts';
 
 
 const useStyles1 = makeStyles((theme: Theme) =>
@@ -30,6 +33,9 @@ const useStyles1 = makeStyles((theme: Theme) =>
     root: {
       flexShrink: 0,
       marginLeft: theme.spacing(2.5),
+    },
+    button: {
+      margin: theme.spacing(1),
     },
   }),
 );
@@ -120,7 +126,7 @@ export default function CustomPaginationActionsTable() {
 
 
   //DATA PREPARATION
-  let [postDataArray,setPostDataArray] = useState([{id:commentsList?.[0]?.id,body:commentsList?.[0]?.body,user:usersList?.[0]?.name, photoUrl:photosList?.[0]?.url}])
+  let [postDataArray,setPostDataArray] = useState([{id:commentsList?.[0]?.id,company:usersList?.[0]?.company.name,body:commentsList?.[0]?.body,user:usersList?.[0]?.name, photoUrl:photosList?.[0]?.url}])
   const [showAll, setShowAll] = useState('true');
   var userSelector=0;
   for (let index = 1; index < commentsList.length; index++) {
@@ -134,8 +140,9 @@ export default function CustomPaginationActionsTable() {
     let commentId= index;
     let commentBody = commentsList?.[index]?.body;
     let commentUser = usersList?.[userSelector]?.name;
-    let commentPhoto= photosList?.[0]?.url;
-    postDataArray.push({id:commentId,body:commentBody,user:commentUser,photoUrl:commentPhoto})
+    let commentCompany=usersList?.[userSelector]?.company.name;
+    let commentPhoto=photosList?.[0]?.url;
+    postDataArray.push({id:commentId,company:commentCompany,body:commentBody,user:commentUser,photoUrl:commentPhoto})
     }
    }
    postDataArray.pop()
@@ -146,13 +153,13 @@ export default function CustomPaginationActionsTable() {
           <TableRow>
               <TableCell>
                 <FlexRow>
-                <h2>Resume your work</h2>
+                <h2>Latest updates</h2>
                 <WorkPagesRightMenu>
                 <form>
                   <TextField
                     className={classes.searchInput}
                     id="outlined-basic"
-                    label="Filter by contents..."
+                    label="Filter by company..."
                     variant="outlined"
                     onChange={
                      event=>setSearchInput(event.target.value)
@@ -165,12 +172,78 @@ export default function CustomPaginationActionsTable() {
                 </WorkPagesSelect>
                 </WorkPagesRightMenu>
                 </FlexRow>
+                <WorkPanelFilters>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  >
+                  All
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  startIcon={<AccountBalanceIcon />}
+                  >
+                  SAS
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  startIcon={<AccountBalanceIcon />}
+                  >
+                  SARL
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  startIcon={<AccountBalanceIcon />}
+                  >
+                  Secondary business
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  startIcon={<AccountBalanceIcon />}
+                  >
+                  Communities
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  startIcon={<AccountBalanceIcon />}
+                  >
+                  POA
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  startIcon={<AccountBalanceIcon />}
+                  >
+                  Survey
+                  </Button>
+                  <Button
+                  variant="contained"
+                  color="default"
+                  //className={classes.button}
+                  >
+                  ...
+                  </Button>
+                  
+                  
+                </WorkPanelFilters>
               </TableCell>
             </TableRow>           
             {postDataArray.filter((val)=>{
               if(searchInput===''){
                   return val;
-              }else if(val.body.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())) {
+              }else if(val.company.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())) {
                   return val;
               };
             })
@@ -187,7 +260,7 @@ export default function CustomPaginationActionsTable() {
             .map((element) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                    <WorkPost id={element.id} body={element.body} author={element.user} imageUrl={element.photoUrl}/>
+                    <EcosystemPost id={element.id} company={element.company} body={element.body} author={element.user} imageUrl={element.photoUrl}/>
               </TableCell>
             </TableRow>
           ))}

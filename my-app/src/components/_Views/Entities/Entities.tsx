@@ -109,7 +109,10 @@ export const Entities:FC=()=> {
               >
                 Filter
             </Button>
-            <IconButton color="primary">
+            <IconButton
+             color="primary"
+             /*onClick={toggleFullscreen}*/
+             >
               <ZoomOutMapIcon/>
             </IconButton>
             <Button
@@ -142,7 +145,6 @@ export const Entities:FC=()=> {
               }).map(company=>(
             <Entity title={company.name} imageUrl={company.thumbnail} adress={company.address}/>
           ))}
-
         </EntitiesContainer>
     );
   }
