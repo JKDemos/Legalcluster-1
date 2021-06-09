@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import {IState} from '../../reducers';
 import {IUsersReducer} from '../../reducers/usersReducers'
+import { IPhotosReducer } from '../../reducers/photosReducers';
 
 //COMP0NENTS
 import Avatar from '@material-ui/core/Avatar';
@@ -23,6 +24,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 export const ExpandMenu: FC = () => {
 
     const { usersList } = useSelector<IState, IUsersReducer>(globalState => globalState.users);
+    const { photosList } = useSelector<IState, IPhotosReducer>(globalState => globalState.photos);
 
     const [inputText,setInputText] = useState<string>('');
      const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +57,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"People".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/test">
                 <UserMenuItem>
                     <PeopleAltIcon/><p>People</p>
                 </UserMenuItem>
@@ -63,7 +65,7 @@ export const ExpandMenu: FC = () => {
         }
           
         {"Entities".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/entities">
             <UserMenuItem>
                 <BusinessIcon/><p>Entities</p>
             </UserMenuItem>
@@ -71,7 +73,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Administration".toLowerCase().includes(inputText.toLowerCase()) &&   
-        <Link to="/">
+        <Link to="/test">
             <UserMenuItem>
                 <SupervisorAccountIcon/><p>Administration</p>
             </UserMenuItem>
@@ -82,7 +84,7 @@ export const ExpandMenu: FC = () => {
         <p>Workspaces</p>
 
         {"client contract".toLowerCase().includes(inputText.toLowerCase()) && 
-        <Link to="/">
+        <Link to="/workspaces/Client Contract/entities2.svg">
             <UserMenuItem>
                 <AssignmentIcon/><p>Client contract</p>
             </UserMenuItem>
@@ -90,7 +92,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Supplier contract".toLowerCase().includes(inputText.toLowerCase()) && 
-        <Link to="/">
+        <Link to="/workspaces/Supplier Contract/entities2.svg">
             <UserMenuItem>
                 <AssignmentIcon/><p>Supplier contract</p>
             </UserMenuItem>
@@ -98,7 +100,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Corporate".toLowerCase().includes(inputText.toLowerCase()) && 
-        <Link to="/">
+        <Link to="/workspaces/Corporate/entities2.svg">
             <UserMenuItem>
                 <BusinessIcon/><p>Corporate</p>
             </UserMenuItem>
@@ -106,7 +108,7 @@ export const ExpandMenu: FC = () => {
         }
                
         {"Group Norms".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/workspaces/Group Norm/people.svg">
             <UserMenuItem>
                 <GavelIcon/><p>Group Norms</p>
             </UserMenuItem>
@@ -114,7 +116,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Estate contracts".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/workspaces/Estate Contracts/house2.svg">
             <UserMenuItem>
                 <AssignmentIcon/><p>Estate contracts</p>
             </UserMenuItem>
@@ -122,7 +124,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Commercial".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/test">
             <UserMenuItem>
                 <AssignmentIcon/><p>Commercial</p>
             </UserMenuItem>
@@ -130,7 +132,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Shops".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/test">
             <UserMenuItem>
                 <BusinessIcon/><p>Shops</p>
             </UserMenuItem>
@@ -138,7 +140,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Business".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/test">
             <UserMenuItem>
                 <BusinessIcon/><p>Business</p>
             </UserMenuItem>
@@ -146,7 +148,7 @@ export const ExpandMenu: FC = () => {
          }
 
         {"Manager".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/test">
             <UserMenuItem>
                 <SupervisorAccountIcon/><p>Manager</p>
             </UserMenuItem>
@@ -154,7 +156,7 @@ export const ExpandMenu: FC = () => {
         }
 
         {"Online".toLowerCase().includes(inputText.toLowerCase()) &&
-        <Link to="/">
+        <Link to="/test">
             <UserMenuItem>
                 <BookmarkBorderIcon/><p>Online</p>
             </UserMenuItem>
@@ -164,7 +166,7 @@ export const ExpandMenu: FC = () => {
         <p>Account</p>
         <Link to='/profile'>
             <UserMenuItem>
-                <Avatar alt='aaa' src={'https://source.unsplash.com/jBTMrR6Q334'} />
+                <Avatar alt='aaa' src={photosList?.[0]?.url} />
                     <div>
                     <p >{usersList?.[0]?.name}</p><p>See profile</p>
                     </div>

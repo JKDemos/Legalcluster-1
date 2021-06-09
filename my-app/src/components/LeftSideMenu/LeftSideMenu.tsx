@@ -46,16 +46,20 @@ export const LeftSideMenu:FC=()=>{
                 </MenuHeader>
                 <Divider/>
                 <PersonalMenu>
+                <Link to='/test'>
                     <PersonalMenuItem>
                         <img src={Icons.networkIcon} alt="network icon"/>
                         <p>Your Network</p>
                         <img src={Icons.networkIcon} alt="network icon"/>
                     </PersonalMenuItem>
+                    </Link>
+                    <Link to='/'>
                     <PersonalMenuItem>
                         <img src={Icons.publicationsIcon} alt="publications icon"/>
                         <p>Your Publications</p>
                         <img src={Icons.plusIcon} alt="plus icon"/>
                     </PersonalMenuItem>
+                    </Link>
                 </PersonalMenu>
             </Profile>
                     <List>

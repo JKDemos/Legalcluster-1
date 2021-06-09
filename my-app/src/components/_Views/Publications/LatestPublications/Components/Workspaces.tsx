@@ -32,43 +32,43 @@ export const Workspaces: FC =()=>{
        <SliderWrapper>
          
            <Slider {...settings}>
-           <Link to="/workspaces/ClientContract">
+           <Link to="/workspaces/Supplier Contract/entities2.svg">
                 <Workspace photoUrl={photosList?.[0]?.url} iconUrl='entities2.svg' workspaceType='Supplier Contract' clientType='corporate' clientCount={150}/>
            </Link>
 
-           <Link to="/workspaces">
+           <Link to="/workspaces/Client Contract/entities2.svg">
                 <Workspace photoUrl={photosList?.[0]?.url} iconUrl='entities2.svg' workspaceType='Client Contract' clientType='corporate' clientCount={150}/>
             </Link>
 
-            <Link to="/workspaces">
-                <Workspace photoUrl={photosList?.[1]?.url} iconUrl='entities2.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
+            <Link to="/workspaces/Group Norm/people.svg">
+                <Workspace photoUrl={photosList?.[1]?.url} iconUrl='people.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
             </Link>
 
-            <Link to="/workspaces">
+            <Link to="/workspaces/Supplier Contract/entities2.svg">
                 <Workspace photoUrl={photosList?.[2]?.url} iconUrl='entities2.svg' workspaceType='Supplier Contract' clientType='corporate' clientCount={150}/>
            </Link>
 
-           <Link to="/workspaces">
+           <Link to="/workspaces/Client Contract/entities2.svg">
                 <Workspace photoUrl={photosList?.[3]?.url} iconUrl='entities2.svg' workspaceType='Client Contract' clientType='corporate' clientCount={150}/>
             </Link>
 
-            <Link to="/workspaces">
-                <Workspace photoUrl={photosList?.[4]?.url} iconUrl='entities2.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
+            <Link to="/workspaces/Group Norm/people.svg">
+                <Workspace photoUrl={photosList?.[4]?.url} iconUrl='people.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
             </Link>
 
-            <Link to="/workspaces">
+            <Link to="/workspaces/Supplier Contract/entities2.svg">
                 <Workspace photoUrl={photosList?.[5]?.url} iconUrl='entities2.svg' workspaceType='Supplier Contract' clientType='corporate' clientCount={150}/>
            </Link>
 
-           <Link to="/workspaces">
+           <Link to="/workspaces/Client Contract/entities2.svg">
                 <Workspace photoUrl={photosList?.[6]?.url} iconUrl='entities2.svg' workspaceType='Client Contract' clientType='corporate' clientCount={150}/>
             </Link>
 
-            <Link to="/workspaces">
-                <Workspace photoUrl={photosList?.[7]?.url} iconUrl='entities2.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
+            <Link to="/workspaces/Group Norm/people.svg">
+                <Workspace photoUrl={photosList?.[7]?.url} iconUrl='people.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
             </Link>
-            <Link to="/workspaces">
-                <Workspace photoUrl={photosList?.[8]?.url} iconUrl='entities2.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
+            <Link to="/workspaces/Group Norm/people.svg">
+                <Workspace photoUrl={photosList?.[8]?.url} iconUrl='people.svg' workspaceType='Group norm' clientType='corporate' clientCount={150}/>
             </Link>
            
 

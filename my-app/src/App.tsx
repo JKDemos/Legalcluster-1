@@ -15,6 +15,7 @@ import {Entities} from './components/_Views/Entities/Entities';
 import {Ecosystem} from './components/_Views/Ecosystem/Ecosystem';
 import {Profile} from './components/Profile/Profile'
 import {Workspaces} from './components/_Views/Publications/Workspaces/Workspaces'
+import {TestView} from './components/_Views/Test/Test'
 
 type GetUsers=ReturnType<typeof getUsers>
 type GetPhotos=ReturnType<typeof getPhotos>
@@ -63,6 +64,8 @@ const MainPage: FC =() => {
                     <Route path='/ecosystem' exact component={Ecosystem}/>
                     <Route path='/profile' exact component={Profile}/>
                     <Route path='/workspaces' exact component={Workspaces}/>
+                    <Route path='/workspaces/:title/:icon' component={Workspaces}/>
+                    <Route path='/test' exact component={TestView}/>
                 </Switch>
         </div>
         </div>

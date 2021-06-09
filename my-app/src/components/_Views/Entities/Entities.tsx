@@ -21,7 +21,6 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ListIcon from '@material-ui/icons/List';
 import AppsIcon from '@material-ui/icons/Apps';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
 export const Entities:FC=()=> {
 
     const {photosList}=useSelector<IState,IPhotosReducer>(globalState=>globalState.photos)
@@ -55,6 +54,17 @@ export const Entities:FC=()=> {
   const [searchInput,setSearchInput] = useState('')
   const [sort, setSort] = useState(true)
   const [wrapperRef, dropdownOpen, toggleDropdown]=useDropdown();
+  let [fullscreen,setFullscreen] = useState(true)
+  let [displayModeList,setDisplayModeList] = useState(true)
+
+  function toggleFullscreen(){
+    if(fullscreen === true){
+      setFullscreen(false)
+     }
+     else if(fullscreen === false){
+      setFullscreen(true)
+  }
+  }
 
   function sortEntities() {
       if(sort === true){
@@ -67,6 +77,12 @@ export const Entities:FC=()=> {
           setSort(true);
       }
   }
+  function setMosaic(){
+    setDisplayModeList(false)
+  }
+  function setList(){
+    setDisplayModeList(true)
+  }
 
     return (
         <EntitiesContainer>
@@ -74,15 +90,13 @@ export const Entities:FC=()=> {
             
             <EntitiesHeader>
               <p>Entities</p>
-              <SettingsIcon/>
-              <IconButton color="primary">
+              <IconButton color="primary" onClick={setMosaic}>
                 <AppsIcon/>
               </IconButton>
-              <IconButton color="primary">
+              <IconButton color="primary"onClick={setList}>
                 <ListIcon/>
               </IconButton>
             </EntitiesHeader>
-
             <Button
                 variant="contained"
                 //color="secondary"
@@ -111,7 +125,7 @@ export const Entities:FC=()=> {
             </Button>
             <IconButton
              color="primary"
-             /*onClick={toggleFullscreen}*/
+             onClick={toggleFullscreen}
              >
               <ZoomOutMapIcon/>
             </IconButton>

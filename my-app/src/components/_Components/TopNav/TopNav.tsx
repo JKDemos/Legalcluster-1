@@ -9,6 +9,12 @@ export const TopNav=styled.div`
     display: flex;
     justify-content: space-between;
 `;
+export const LogoContainer=styled.div`
+img{
+    padding-top: 10px;
+    width:50px
+}
+`;
 export const UserMenu=styled.div`
     margin-top: 10px;
     width:320px;

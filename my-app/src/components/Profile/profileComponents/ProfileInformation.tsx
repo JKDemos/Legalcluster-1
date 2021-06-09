@@ -19,8 +19,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import { ItemWrapper } from '../../_Components/Common/ItemWrapper';
 import { DataSection } from '../../_Components/Common/DataSection';
 import {FlexRow} from '../../_Components/Common/DataLayouts';
-import { RightBound } from '../../_Components/Common/RightBound';
-import {ProfileDescrption,ProfilePersonalDetails,ProfileBox,PersonalDataForm} from '../../_Components/Profile/Profile'
+import { RightBound, ProfileHeader } from '../../_Components/Common/RightBound';
+import {ProfileDescrption,ProfileFormContainer,ProfileBox,PersonalDataForm} from '../../_Components/Profile/Profile'
 import { ShadowForm} from '../../_Components/Forms';
 import { BoldInput } from '../../_Components/Inputs';
 
@@ -70,12 +70,10 @@ interface ISection1 {
               <CloseIcon className='X'/>
               </FlexRow>
           </DataSection>
-          <FlexRow>
-            <RightBound>
+            <ProfileHeader>
                 <EditIcon onClick={()=>showChange(isChange === false ? isChange = true:isChange=false)} />
-            </RightBound>
-           </FlexRow>
-          <ProfilePersonalDetails>
+            </ProfileHeader>
+          <ProfileFormContainer>
             <ProfileBox>
                 <Avatar alt='profilePicture' src={photosList[0]?.url} className={classes.large}/>
                   <p>See profile</p>                 
@@ -139,7 +137,7 @@ interface ISection1 {
                   </RightBound>
                   </ShadowForm>
               </PersonalDataForm>
-          </ProfilePersonalDetails>
+            </ProfileFormContainer>
   
       </DataSection>
      );

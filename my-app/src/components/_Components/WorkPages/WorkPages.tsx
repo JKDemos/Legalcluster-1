@@ -8,11 +8,16 @@ export const WorkspaceTableContainer=styled.div`
 export const WorkPagesSelect=styled.select`
     width:150px;
     height:30px;
+    margin-left: 20px;
+    margin-top:10px
+`;
+export const TableMenu=styled.div`
+display:flex;
+justify-content: space-between;
 `;
 export const WorkPagesRightMenu=styled.div`
     display: flex;
-    
-    .MuiTextField-root{
-        height: 20px;
+    form{
+        max-height: 20px;
     }
 `;

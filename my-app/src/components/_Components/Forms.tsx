@@ -33,3 +33,15 @@ export const TagsForm=styled.form`
         margin-right:10px;
     }
 `;
+export const FeeForm=styled.form`
+    input{
+        margin-bottom:5px;
+        width:250px;
+        margin-right:5px;
+        font-size:16px;
+    }
+    p{
+        text-align: left;
+        margin-right:10px;
+    }
+`;

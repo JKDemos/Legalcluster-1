@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { IWorkspace } from './IWorkspace';
 
-import { WorkspaceIconContainer } from '../../../../../_Components/Other/Workspace';
+import { WorkspaceIconContainer, WorkspaceDescription } from '../../../../../_Components/Other/Workspace';
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +19,9 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  textarea:{
+    height:150,
+  }
 });
 
 const Workspace: React.FC<IWorkspace>=({photoUrl,iconUrl,workspaceType, clientType, clientCount}: IWorkspace)=> { 
@@ -33,17 +36,17 @@ const Workspace: React.FC<IWorkspace>=({photoUrl,iconUrl,workspaceType, clientTy
           image={photoUrl}//"/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"
         />
-        <CardContent>
+        <CardContent className={classes.textarea}>
           <WorkspaceIconContainer>
             <img src={iconAdress} alt='icon'/>
           </WorkspaceIconContainer>
           <Typography gutterBottom variant="h5" component="h2">
             <p>{workspaceType}</p>
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <WorkspaceDescription>
             <p>{clientType} {clientCount} users</p>
             <p>last updated 2 days ago</p>
-          </Typography>
+          </WorkspaceDescription>
         </CardContent>
       </CardActionArea>
     </Card>

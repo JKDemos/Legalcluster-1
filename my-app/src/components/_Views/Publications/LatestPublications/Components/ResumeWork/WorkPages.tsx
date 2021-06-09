@@ -21,7 +21,7 @@ import { ICommentsReducer } from '../../../../../../reducers/commentsReducer';
 import { useSelector } from 'react-redux';
 
 import WorkPost from './WorkPost';
-import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu } from '../../../../../_Components/WorkPages/WorkPages';
+import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu, TableMenu } from '../../../../../_Components/WorkPages/WorkPages';
 import { FlexRow } from '../../../../../_Components/Common/DataLayouts';
 
 
@@ -145,7 +145,7 @@ export default function CustomPaginationActionsTable() {
         <TableBody>
           <TableRow>
               <TableCell>
-                <FlexRow>
+                <TableMenu>
                 <h2>Resume your work</h2>
                 <WorkPagesRightMenu>
                 <form>
@@ -154,6 +154,7 @@ export default function CustomPaginationActionsTable() {
                     id="outlined-basic"
                     label="Filter by contents..."
                     variant="outlined"
+                    margin="none"
                     onChange={
                      event=>setSearchInput(event.target.value)
                      }
@@ -164,7 +165,7 @@ export default function CustomPaginationActionsTable() {
                     <option value = 'false'>Followed</option>
                 </WorkPagesSelect>
                 </WorkPagesRightMenu>
-                </FlexRow>
+                </TableMenu>
               </TableCell>
             </TableRow>           
             {postDataArray.filter((val)=>{
@@ -175,8 +176,7 @@ export default function CustomPaginationActionsTable() {
               };
             })
             .filter((value)=>{
-              console.log(value)
-              if(showAll==='true'){
+              if(showAll==='true'){//pokazuje wszystkie wartosci
                 return value
               }
               else if(value.user.toLowerCase()===('Leanne Graham').toLowerCase()){

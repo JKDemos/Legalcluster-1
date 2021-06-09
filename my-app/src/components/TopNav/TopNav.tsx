@@ -17,7 +17,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import {Link} from 'react-router-dom';
 
 //styled components
-import { TopNav, LeftSide, CenterSide, RightSide } from '../_Components/TopNav/TopNav';
+import { TopNav, LeftSide, CenterSide, RightSide,LogoContainer } from '../_Components/TopNav/TopNav';
 //DROPDOWN HOOK
 import useDropdown from 'react-dropdown-hook'
 import {ExpandMenu} from './ExpandMenu'
@@ -29,7 +29,9 @@ export default function PrimarySearchAppBar() {
     <TopNav>
         <LeftSide>
           <Link to="/">
-            <h2>LOGO</h2>
+            <LogoContainer>
+              <img src="/logo192.png"/>
+            </LogoContainer>
           </Link>
           <IconButton color="inherit" onClick={toggleDropdown} >
             <HomeIcon />
@@ -43,15 +45,21 @@ export default function PrimarySearchAppBar() {
             />
           </CenterSide>
           <RightSide>
+          <Link to="/">
             <IconButton color="inherit">
                 <HomeIcon />
             </IconButton>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            </Link>
+            <Link to="/test">
+            <IconButton color="inherit">
                 <MailIcon />
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            </Link>
+            <Link to="/test">
+            <IconButton color="inherit">
                 <NotificationsIcon />
             </IconButton>
+            </Link>
             </RightSide>
         {
           dropdownOpen&&

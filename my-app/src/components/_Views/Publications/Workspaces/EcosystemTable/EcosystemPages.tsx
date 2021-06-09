@@ -23,7 +23,7 @@ import { ICommentsReducer } from '../../../../../reducers/commentsReducer';
 import { useSelector } from 'react-redux';
 
 import EcosystemPost from './EcosystemPost';
-import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu } from '../../../../_Components/WorkPages/WorkPages';
+import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu, TableMenu } from '../../../../_Components/WorkPages/WorkPages';
 import { WorkPanelFilters } from '../../../../_Components/CorporateHoldings/WorkPanel';
 import { FlexRow } from '../../../../_Components/Common/DataLayouts';
 
@@ -152,7 +152,7 @@ export default function CustomPaginationActionsTable() {
         <TableBody>
           <TableRow>
               <TableCell>
-                <FlexRow>
+                <TableMenu>
                 <h2>Latest updates</h2>
                 <WorkPagesRightMenu>
                 <form>
@@ -171,7 +171,7 @@ export default function CustomPaginationActionsTable() {
                     <option value = 'false'>Followed</option>
                 </WorkPagesSelect>
                 </WorkPagesRightMenu>
-                </FlexRow>
+                </TableMenu>
                 <WorkPanelFilters>
                   <Button
                   variant="contained"
