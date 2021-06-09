@@ -18,7 +18,7 @@ createStyles({
   },
 })
 );
-const ResumePost:FC<IResumePost>=({id, company, body, author, imageUrl}: IResumePost)=> {
+const ResumePost:FC<IResumePost>=({company, body, author, imageUrl}: IResumePost)=> {
 
   const classes=Styles()
   console.log({imageUrl})

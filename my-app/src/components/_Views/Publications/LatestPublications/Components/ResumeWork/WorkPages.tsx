@@ -132,14 +132,13 @@ export default function CustomPaginationActionsTable() {
       else{
         userSelector=0;
       }
-    let commentId= index;
+    let commentId= commentsList?.[index]?.postId;
     let commentBody = commentsList?.[index]?.body;
     let commentUser = usersList?.[userSelector]?.name;
     let commentPhoto= photosList?.[0]?.url;
     postDataArray.push({id:commentId,body:commentBody,user:commentUser,photoUrl:commentPhoto})
     }
    }
-   postDataArray.pop()
   return (
     <WorkspaceTableContainer>
       <Table className={classes.table} aria-label="custom pagination table">

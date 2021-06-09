@@ -21,7 +21,7 @@ import { IPhotosReducer } from '../../../../reducers/photosReducers';
 import { ICommentsReducer } from '../../../../reducers/commentsReducer';
 import { useSelector } from 'react-redux';
 
-import EcosystemPost from './ResumePost';
+import ResumePost from './ResumePost';
 import { WorkspaceTableContainer, WorkPagesSelect, WorkPagesRightMenu, TableMenu } from '../../../_Components/WorkPages/WorkPages';
 import { WorkPanelFilters } from '../../../_Components/CorporateHoldings/WorkPanel';
 import { StandardInput } from '../../../_Components/Common/Common';
@@ -122,28 +122,19 @@ export default function CustomPaginationActionsTable() {
     setPage(newPage);
   };
 
-
-  //DATA PREPARATION
-  let [postDataArray,setPostDataArray] = useState([{id:commentsList?.[0]?.id,company:usersList?.[0]?.company.name,body:commentsList?.[0]?.body,user:usersList?.[0]?.name, photoUrl:photosList?.[0]?.url}])
   const [showAll, setShowAll] = useState('true');
-  var userSelector=0;
-  for (let index = 1; index < commentsList.length; index++) {
-    if(postDataArray.length < 500){
-      if(userSelector<9){
-        userSelector++
-      }
-      else{
-        userSelector=0;
-      }
-    let commentId= index;
-    let commentBody = commentsList?.[index]?.body;
-    let commentUser = usersList?.[userSelector]?.name;
-    let commentCompany=usersList?.[userSelector]?.company.name;
-    let commentPhoto=photosList?.[0]?.url;
-    postDataArray.push({id:commentId,company:commentCompany,body:commentBody,user:commentUser,photoUrl:commentPhoto})
-    }
-   }
-   postDataArray.pop()
+  //DATA PREPARATION
+  let [postDataArray,setDataPostTable] = useState([{title:postsList?.[0]?.title,body:postsList?.[0]?.body,user:usersList?.[0]?.name,userid:postsList?.[0]?.userId, photoUrl:photosList?.[0]?.url}])
+  for (let index = 1; index < postsList.length; index++) {
+    if(postDataArray.length < 100){
+    let postTitle = postsList?.[index]?.title;
+    let postBody = postsList?.[index]?.body;
+    let postUserId = postsList?.[index]?.userId;
+    let postuser = usersList?.[postUserId-1]?.name;
+    let image=photosList?.[0]?.url
+    postDataArray.push({title:postTitle,body:postBody,user:postuser,userid:postUserId,photoUrl:image})
+    } 
+  }
   return (
     <WorkspaceTableContainer>
       <Table className={classes.table} aria-label="custom pagination table">
@@ -237,7 +228,7 @@ export default function CustomPaginationActionsTable() {
             {postDataArray.filter((val)=>{
               if(searchInput===''){
                   return val;
-              }else if(val.company.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())) {
+              }else if(val.title.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())) {
                   return val;
               };
             })
@@ -254,7 +245,7 @@ export default function CustomPaginationActionsTable() {
             .map((element) => (
             <TableRow>
               <TableCell component="th" scope="row">
-                    <EcosystemPost id={element.id} company={element.company} body={element.body} author={element.user} imageUrl={element.photoUrl}/>
+                    <ResumePost company={element.title} body={element.body} author={element.user} imageUrl={element.photoUrl}/>
               </TableCell>
             </TableRow>
           ))}
