@@ -1,2 +1,8 @@
 # Legalcluster
-React demo app, technologies used: React, Typescript, StyledComponents, Redux
+React demo app
+Technologies used:
+React.JS,
+Typescript,
+StyledComponents,
+Redux,
+JSONplaceholder API,
