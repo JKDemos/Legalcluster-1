@@ -1,4 +1,3 @@
-=======
 # Legalcluster
 React demo app
 Technologies used:
@@ -7,4 +6,5 @@ Typescript,
 StyledComponents,
 Redux,
 JSONplaceholder API,
->>>>>>> c7d64e4da42c668a2499222c43578fd659940106
+
+LIVE DEMO: https://legal-cluster.netlify.app/
